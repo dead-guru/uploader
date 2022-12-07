@@ -1,5 +1,11 @@
 # Uploader
 Simple file storage with server-side encryption and basic auth.
+Originally developed for https://github.com/42wim/matterbridge/wiki/Mediaserver-setup-%28advanced%29
+
+## Features
+* Basic authorization
+* aes256ctr file encryption
+* jpeg mozilla optimization
 
 ## Quick start
 
