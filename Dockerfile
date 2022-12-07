@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node:19-alpine
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN npm install --production
 
 COPY . .
 
-RUN mkdir -p /app/public && mkdir -p /app/uploads
+RUN mkdir -p /app/public
 
 EXPOSE 8885
 

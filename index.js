@@ -14,6 +14,7 @@ const port = process.env.HTTP_PORT;
 const adminPass = process.env.ADMIN_PASS;
 const siteUrl = process.env.SITE_URL;
 const encryptKey = process.env.SECRET;
+const limit = process.env.FILE_LIMIT;
 
 const app = express();
 
@@ -117,7 +118,7 @@ app.put(
             users: { admin: adminPass },
             unauthorizedResponse: getUnauthorizedResponse,
         }),
-        bodyParser.raw({ type: "binary/octet-stream", limit: "50mb" }),
+        bodyParser.raw({ type: "binary/octet-stream", limit:  limit}),
         (error, req, res, next) => {
             console.log(
                 "[ERROR] " +
