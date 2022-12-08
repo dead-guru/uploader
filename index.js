@@ -25,7 +25,7 @@ const getUnauthorizedResponse = (req) => {
 
 const aes256ctr = (encryptKey) => {
     const ALGO = "aes-256-ctr";
-    //aes-256-gcm instead ctr? 
+    //aes-256-gcm instead ctr?
 
     const encrypt = (buffer, key) => {
         key = crypto
@@ -118,7 +118,7 @@ app.put(
             users: { admin: adminPass },
             unauthorizedResponse: getUnauthorizedResponse,
         }),
-        bodyParser.raw({ type: "binary/octet-stream", limit:  limit}),
+        bodyParser.raw({ type: "binary/octet-stream", limit: limit }),
         (error, req, res, next) => {
             console.log(
                 "[ERROR] " +
@@ -135,6 +135,13 @@ app.put(
     async function (req, res) {
         const newDir = "./public/" + req.params["path"];
         const newPath = newDir + "/" + req.params[0];
+
+        if (fs.existsSync(newPath)) {
+            // 'replace' in req.query && enable replacing via config?
+            res.status(400).end("file exists");
+
+            return;
+        }
 
         if (!fs.existsSync(newDir)) {
             fs.mkdirSync(newDir);
