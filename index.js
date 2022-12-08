@@ -100,6 +100,7 @@ app.get("/files/:path*", (req, res) => {
                 res.setHeader("Content-Type", fileType.mime);
             } catch (e) {
                 console.log("[ERROR] Unable get mime!" + newPath);
+                res.setHeader('Content-Disposition", "attachment; filename="'+req.params[0] + '"')
             }
 
             res.status(200).end(file);
