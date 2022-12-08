@@ -101,8 +101,9 @@ app.get("/files/:path*", (req, res) => {
             } catch (e) {
                 console.log("[ERROR] Unable get mime!" + newPath);
                 res.setHeader(
-                    'Content-Disposition", "attachment; filename=' +
-                        req.params[0]
+                    "Content-Disposition",
+                    "attachment;filename=" +
+                        req.params[0].replace(/^\/|\/$/g, "")
                 );
             }
 
